@@ -135,11 +135,11 @@ python -m unittest discover tests
 ### Core NLP functions
 
 - [x] Tokenization (Word Tokenization - Unicode-based rules)
-- [ ] POS tagging
-- [ ] Named Entity Recognition (NER)
-- [ ] Morphological Analysis
+- [x] POS tags
+- [x] Named Entity Recognition (NER)
+- [x] Morphological Analysis
 - [ ] Dependency Parsing
-- [ ] Stemming and Lemmatization
+- [x] Stemming and Lemmatization
 - [ ] Transliteration: Telugu to English wording
 
 ### Resources
