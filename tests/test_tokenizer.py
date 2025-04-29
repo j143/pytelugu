@@ -104,13 +104,11 @@ class TestMorphologicalAnalysis(unittest.TestCase):
             'prefix': 'ప్ర',
             'suffix': 'ము'
         })
-        # TODO: fix this
-        # AssertionError: {'root': 'ెళ్తు', 'prefix': 'వ', 'suffix': 'న్న'} != {'root': 'వెళ్తు', 'prefix': None, 'suffix': 'న్న'} 
-        # self.assertEqual(morphological_analysis("వెళ్తున్న"), {
-        #     'root': 'వెళ్తు',
-        #     'prefix': None,
-        #     'suffix': 'న్న'
-        # })
+        self.assertEqual(morphological_analysis("వెళ్తున్న"), {
+            'root': 'వెళ్తు',
+            'prefix': None,
+            'suffix': 'న్న'
+        })
 
 if __name__ == "__main__":
     unittest.main()
