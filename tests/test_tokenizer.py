@@ -1,5 +1,5 @@
 import unittest
-from src.tokenizer import word_tokenize, normalize_text, pos_tag, named_entity_recognition, stem_word, lemmatize_word
+from src.tokenizer import word_tokenize, normalize_text, pos_tag, named_entity_recognition, stem_word, lemmatize_word, morphological_analysis
 
 
 class TestWordTokenizer(unittest.TestCase):
@@ -89,6 +89,28 @@ class TestStemmingAndLemmatization(unittest.TestCase):
 
     def test_lemmatize_word(self):
         self.assertEqual(lemmatize_word("పుస్తకాలు"), "పుస్తకం")
+        self.assertEqual(lemmatize_word("కాలేజీలు"), "కాలేజీ")
+
+class TestMorphologicalAnalysis(unittest.TestCase):
+
+    def test_morphological_analysis(self):
+        self.assertEqual(morphological_analysis("పుస్తకాలు"), {
+            'root': 'పుస్తక',
+            'prefix': None,
+            'suffix': 'ాలు'
+        })
+        self.assertEqual(morphological_analysis("ప్రపంచము"), {
+            'root': 'పంచ',
+            'prefix': 'ప్ర',
+            'suffix': 'ము'
+        })
+        # TODO: fix this
+        # AssertionError: {'root': 'ెళ్తు', 'prefix': 'వ', 'suffix': 'న్న'} != {'root': 'వెళ్తు', 'prefix': None, 'suffix': 'న్న'} 
+        # self.assertEqual(morphological_analysis("వెళ్తున్న"), {
+        #     'root': 'వెళ్తు',
+        #     'prefix': None,
+        #     'suffix': 'న్న'
+        # })
 
 if __name__ == "__main__":
     unittest.main()

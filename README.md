@@ -60,6 +60,37 @@ print(tags)
 # Output: [('నేను', 'X'), ('పుస్తకం', 'NOUN'), ('చదువుతున్నాను', 'VERB'), ('.', 'PUNCT')]
 ```
 
+#### Morphological Analysis
+
+The `morphological_analysis` function analyzes a Telugu word and extracts its root, prefix, and suffix.
+
+```python
+from src.tokenizer import morphological_analysis
+
+word = "ప్రపంచము"
+analysis = morphological_analysis(word)
+print(analysis)
+# Output: {'root': 'పంచ', 'prefix': 'ప్ర', 'suffix': 'ము'}
+
+word = "పుస్తకాలు"
+analysis = morphological_analysis(word)
+print(analysis)
+# Output: {'root': 'పుస్తక', 'prefix': None, 'suffix': 'ాలు'}
+```
+
+**Morphological Analysis Structure**
+
+```mermaid
+graph TD
+    A[Word] --> B[Prefix]
+    A --> C[Root]
+    A --> D[Suffix]
+    B --> E[Examples: ప్ర, అ, సు, వ]
+    D --> F[Examples: లు, ము, తో, కు, ని, లో, గా, కి, న్న]
+```
+
+
+
 ### How to run tests
 
 Let's test each feature works with unit testing
@@ -131,4 +162,5 @@ python -m unittest discover tests
 ### Integration
 
 - [ ] Use transformers library
+
 

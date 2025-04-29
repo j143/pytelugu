@@ -169,5 +169,33 @@ def lemmatize_word(word: str) -> str:
     # basic lemma example
     lemmas = {
         'పుస్తకాలు': 'పుస్తకం',
+        'కాలేజీలు': 'కాలేజీ',
     }
     return lemmas.get(word, word)
+
+def morphological_analysis(word: str) -> dict:
+    """
+    Do morphological analysis on a single telugu word
+
+    Args:
+        word (str): Telugu word
+
+    Returns:
+        dict: root word, prefix and suffix.
+    """
+    suffixes = ['ాలు', 'లు', 'ము', 'తో', 'కు', 'ని', 'లో', 'గా', 'కి', 'న్న']  # common & compound suffixes like 'ాలు'
+    prefixes = ['ప్ర', 'అ', 'సు', 'వ']
+
+    # Extract suffix, the same 
+    suffix = next((s for s in suffixes if word.endswith(s)), None)
+    root = word[:-len(suffix)] if suffix else word
+
+    # Extract prefix
+    prefix = next((p for p in prefixes if root.startswith(p)), None)
+    root = root[len(prefix):] if prefix else root
+
+    return {
+        'root': root,
+        'prefix': prefix,
+        'suffix': suffix
+    }
