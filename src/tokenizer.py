@@ -139,3 +139,19 @@ def named_entity_recognition(text: str, patterns_file: str = "ner_patterns.txt")
                 break
 
     return entities
+
+def stem_word(word: str) -> str:
+    """
+    Perform stemming on a single Telugu word using rule-based suffix removal.
+
+    Args:
+        word (str): The input Telugu word.
+
+    Returns:
+        str: The stemmed word.
+    """
+    suffixes = ['లు']
+    for suffix in suffixes:
+        if word.endswith(suffix):
+            return word[:-len(suffix)] # remove matched suffix and return remaining word
+    return word

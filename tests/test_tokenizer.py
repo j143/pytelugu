@@ -1,5 +1,6 @@
 import unittest
-from src.tokenizer import word_tokenize, normalize_text, pos_tag, named_entity_recognition
+from src.tokenizer import word_tokenize, normalize_text, pos_tag, named_entity_recognition, stem_word
+
 
 class TestWordTokenizer(unittest.TestCase):
 
@@ -77,6 +78,11 @@ class TestNER(unittest.TestCase):
             ("కార్పొరేషన్", "ORGANIZATION")
         ]
         self.assertEqual(named_entity_recognition(text), expected)
+
+class TestStemmingAndLemmatization(unittest.TestCase):
+
+    def test_stem_word(self):
+        self.assertEqual(stem_word("పుస్తకాలు"), "పుస్తకా")
 
 if __name__ == "__main__":
     unittest.main()
