@@ -173,26 +173,47 @@ def lemmatize_word(word: str) -> str:
     }
     return lemmas.get(word, word)
 
-def morphological_analysis(word: str) -> dict:
+def load_telugu_dictionary(file_path: str) -> set:
     """
-    Do morphological analysis on a single telugu word
+    Load a dictionary of valid Telugu words from a file.
 
     Args:
-        word (str): Telugu word
+        file_path (str): Path to the dictionary file.
 
     Returns:
-        dict: root word, prefix and suffix.
+        set: A set of valid Telugu words.
     """
-    suffixes = ['ాలు', 'లు', 'ము', 'తో', 'కు', 'ని', 'లో', 'గా', 'కి', 'న్న']  # common & compound suffixes like 'ాలు'
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return set(word.strip() for word in file)
+
+def morphological_analysis(word: str, dictionary_file: str = "telugu_words.txt") -> dict:
+    """
+    Perform morphological analysis on a single Telugu word.
+
+    Args:
+        word (str): The input Telugu word.
+        dictionary_file (str): Path to the dictionary file.
+
+    Returns:
+        dict: A dictionary containing the root, prefix, and suffix of the word.
+    """
+    suffixes = ['ాలు', 'లు', 'ము', 'తో', 'కు', 'ని', 'లో', 'గా', 'కి', 'న్న']  # Common & compound suffixes
     prefixes = ['ప్ర', 'అ', 'సు', 'వ']
 
-    # Extract suffix, the same 
-    suffix = next((s for s in suffixes if word.endswith(s)), None)
-    root = word[:-len(suffix)] if suffix else word
+    # Load the dictionary of valid Telugu words
+    valid_words = load_telugu_dictionary(dictionary_file)
 
-    # Extract prefix
-    prefix = next((p for p in prefixes if root.startswith(p)), None)
-    root = root[len(prefix):] if prefix else root
+    # Extract prefix first and validate the remaining root
+    prefix = next((p for p in prefixes if word.startswith(p) and word[len(p):] in valid_words), None)
+    root = word[len(prefix):] if prefix else word
+
+    # Extract suffix from the remaining root
+    suffix = next((s for s in suffixes if root.endswith(s)), None)
+    root = root[:-len(suffix)] if suffix else root
+
+    # Validate the final root against the dictionary
+    if root not in valid_words:
+        root = None
 
     return {
         'root': root,
