@@ -1,5 +1,5 @@
 import unittest
-from src.tokenizer import word_tokenize, normalize_text, pos_tag, named_entity_recognition, stem_word
+from src.tokenizer import word_tokenize, normalize_text, pos_tag, named_entity_recognition, stem_word, lemmatize_word
 
 
 class TestWordTokenizer(unittest.TestCase):
@@ -83,12 +83,12 @@ class TestStemmingAndLemmatization(unittest.TestCase):
 
     def test_stem_word(self):
         self.assertEqual(stem_word("పుస్తకాలు"), "పుస్తకా")
-
-    def test_stem_word_with_new_suffixes(self):
-        self.assertEqual(stem_word("పుస్తకాలు"), "పుస్తకా")
         self.assertEqual(stem_word("పిల్లలు"), "పిల్ల")
         self.assertEqual(stem_word("చదువుతున్న"), "చదువుతు")
         self.assertEqual(stem_word("వెళ్తున్న"), "వెళ్తు")
+
+    def test_lemmatize_word(self):
+        self.assertEqual(lemmatize_word("పుస్తకాలు"), "పుస్తకం")
 
 if __name__ == "__main__":
     unittest.main()

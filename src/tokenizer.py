@@ -155,3 +155,19 @@ def stem_word(word: str) -> str:
         if word.endswith(suffix):
             return word[:-len(suffix)] # remove matched suffix and return remaining word
     return word
+
+def lemmatize_word(word: str) -> str:
+    """
+    Do lemmatization with the help of dictionary words in Telugu
+
+    Args:
+        word (str): Telugu word
+
+    Returns:
+        str: result
+    """
+    # basic lemma example
+    lemmas = {
+        'పుస్తకాలు': 'పుస్తకం',
+    }
+    return lemmas.get(word, word)
