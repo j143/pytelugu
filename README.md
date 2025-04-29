@@ -5,6 +5,7 @@
 The Natural Language Processing library for Telugu, to provide comprehensive toolkit.
 
 ### Features
+
 - Word Tokenization: Splits Telugu text into words and punctuation marks.
 
 ### Installation
@@ -33,6 +34,20 @@ print(tokens)
 # Output: ['నేను', 'బిట్స్', 'కాలేజీలో', 'చదువుతున్నాను', '.']
 ```
 
+#### Normalization
+
+Remove extra spaces between words in Telugu text.
+
+```
+from src.tokenizer import normalize_text
+
+text = "  నేను   బిట్స్  కాలేజీలో   చదువుతున్నాను.  "
+output = normalize_text(text)
+print(output)
+# Output: "నేను బిట్స్ కాలేజీలో చదువుతున్నాను."
+```
+
+
 ### How to run tests
 
 Let's test each feature works with unit testing
@@ -40,6 +55,9 @@ Let's test each feature works with unit testing
 ```bash
 python -m unittest discover tests
 ```
+
+
+
 
 ## Core NLP functions
 
