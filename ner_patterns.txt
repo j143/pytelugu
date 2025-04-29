@@ -1,0 +1,10 @@
+ENTITY_TYPE,WORD
+PERSON,రాముడు
+PERSON,సీత
+PERSON,హనుమంతుడు
+LOCATION,హైదరాబాద్
+LOCATION,విజయవాడ
+LOCATION,నగరం
+ORGANIZATION,సంస్థ
+ORGANIZATION,కార్పొరేషన్
+ORGANIZATION,సమితి
