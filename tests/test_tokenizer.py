@@ -100,8 +100,8 @@ class TestMorphologicalAnalysis(unittest.TestCase):
             'suffix': 'ాలు'
         })
         self.assertEqual(morphological_analysis("ప్రపంచము"), {
-            'root': 'పంచ',
-            'prefix': 'ప్ర',
+            'root': 'ప్రపంచ',
+            'prefix': None,
             'suffix': 'ము'
         })
         self.assertEqual(morphological_analysis("వెళ్తున్న"), {
