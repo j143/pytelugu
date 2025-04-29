@@ -1,5 +1,45 @@
 # pytelugu
 
+## Telugu NLP Library
+
+The Natural Language Processing library for Telugu, to provide comprehensive toolkit.
+
+### Features
+- Word Tokenization: Splits Telugu text into words and punctuation marks.
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/j143/pytelugu
+   cd pytelugu
+   ```
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+### Usage
+
+#### Word Tokenization
+
+The `word_tokenize` function splits the sentence into the words.
+
+```python
+from src.tokenizer import word_tokenize
+
+text = "నేను బిట్స్ కాలేజీలో చదువుతున్నాను."
+tokens = word_tokenize(text)
+print(tokens)
+# Output: ['నేను', 'బిట్స్', 'కాలేజీలో', 'చదువుతున్నాను', '.']
+```
+
+### How to run tests
+
+Let's test each feature works with unit testing
+
+```bash
+python -m unittest discover tests
+```
 
 ## Core NLP functions
 
