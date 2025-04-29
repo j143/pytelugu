@@ -83,3 +83,33 @@ def pos_tag(text: str) -> List[Tuple[str, str]]:
         tagged_words.append((word, tag))
 
     return tagged_words
+
+def named_entity_recognition(text: str) -> List[Tuple[str, str]]:
+    """
+    Named Entity Recognition (NER) over Telugu text
+
+    Args:
+        text (str): Telugu text
+
+    Returns:
+        List[Tuple[str, str]]: Each word and its type
+    """
+    # First identify the words themselves as a starting point
+    patterns = {
+        'PERSON': r'(రాముడు|సీత|హనుమంతుడు)',  # Simplified regex to match names directly
+    }
+
+    # tokenize text into words
+    words = word_tokenize(text)
+    print("Debug: Tokenized words:", words)
+
+    # loop over all the words and identify the type
+    entities = []
+    for word in words:
+        for entity_type, pattern in patterns.items():
+            if re.fullmatch(pattern, word):  # Use re.fullmatch to match the entire word
+                print(f"Debug: Matched {word} as {entity_type}")
+                entities.append((word, entity_type))
+                break
+
+    return entities

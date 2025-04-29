@@ -1,5 +1,5 @@
 import unittest
-from src.tokenizer import word_tokenize, normalize_text, pos_tag
+from src.tokenizer import word_tokenize, normalize_text, pos_tag, named_entity_recognition
 
 class TestWordTokenizer(unittest.TestCase):
 
@@ -56,6 +56,18 @@ class TestPOSTag(unittest.TestCase):
             (".", "PUNCT")
         ]
         self.assertEqual(pos_tag(text), expected)
+
+class TestNER(unittest.TestCase):
+
+    def test_person_names(self):
+        text = "రాముడు సీత హనుమంతుడు"
+        expected = [
+            ("రాముడు", "PERSON"),
+            ("సీత", "PERSON"),
+            ("హనుమంతుడు", "PERSON")
+        ]
+        self.assertEqual(named_entity_recognition(text), expected)
+
 
 if __name__ == "__main__":
     unittest.main()
