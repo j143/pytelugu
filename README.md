@@ -32,3 +32,36 @@
 
 1. use transformers library for foundational NLP tasks
 
+## Implementation Progress
+
+### Core NLP functions
+
+- [x] Tokenization (Word Tokenization - Unicode-based rules)
+- [ ] POS tagging
+- [ ] Named Entity Recognition (NER)
+- [ ] Morphological Analysis
+- [ ] Dependency Parsing
+- [ ] Stemming and Lemmatization
+- [ ] Transliteration: Telugu to English wording
+
+### Resources
+
+- [ ] Annotated datasets
+- [ ] Corpus
+- [ ] Dictionaries
+- [ ] POS tagset
+
+### Language Models
+
+- [ ] Pre-trained models
+- [ ] Word embedding over Telugu text
+
+### Tools
+
+- [ ] Text normalization
+- [ ] Spell checking and correction
+
+### Integration
+
+- [ ] Use transformers library
+
