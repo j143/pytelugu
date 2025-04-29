@@ -67,7 +67,16 @@ class TestNER(unittest.TestCase):
             ("హనుమంతుడు", "PERSON")
         ]
         self.assertEqual(named_entity_recognition(text), expected)
-
+    
+    def test_mixed_entities(self):
+        text = "రాముడు హైదరాబాద్ భారత కార్పొరేషన్"
+        expected = [
+            ("రాముడు", "PERSON"),
+            ("హైదరాబాద్", "LOCATION"),
+            # ("భారత", "ORGANIZATION"), // TODO: handle new words not in the ner_patterns.txt
+            ("కార్పొరేషన్", "ORGANIZATION")
+        ]
+        self.assertEqual(named_entity_recognition(text), expected)
 
 if __name__ == "__main__":
     unittest.main()
