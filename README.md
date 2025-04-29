@@ -38,7 +38,7 @@ print(tokens)
 
 Remove extra spaces between words in Telugu text.
 
-```
+```python
 from src.tokenizer import normalize_text
 
 text = "  నేను   బిట్స్  కాలేజీలో   చదువుతున్నాను.  "
@@ -47,6 +47,18 @@ print(output)
 # Output: "నేను బిట్స్ కాలేజీలో చదువుతున్నాను."
 ```
 
+#### Identify Part-of-Speech (POS)
+
+Use  `pos_tag` to tag a Part of Speech
+
+```python
+from src.tokenizer import pos_tag
+
+text = "నేను పుస్తకం చదువుతున్నాను."
+tags = pos_tag(text)
+print(tags)
+# Output: [('నేను', 'X'), ('పుస్తకం', 'NOUN'), ('చదువుతున్నాను', 'VERB'), ('.', 'PUNCT')]
+```
 
 ### How to run tests
 
@@ -55,9 +67,6 @@ Let's test each feature works with unit testing
 ```bash
 python -m unittest discover tests
 ```
-
-
-
 
 ## Core NLP functions
 
