@@ -1,5 +1,5 @@
 import unittest
-from src.tokenizer import word_tokenize, normalize_text
+from src.tokenizer import word_tokenize, normalize_text, pos_tag
 
 class TestWordTokenizer(unittest.TestCase):
 
@@ -39,6 +39,23 @@ class TestTextNormalization(unittest.TestCase):
         text = "నేను బిట్స్ కాలేజీలో చదువుతున్నాను."
         expected = "నేను బిట్స్ కాలేజీలో చదువుతున్నాను."
         self.assertEqual(normalize_text(text), expected)
+
+class TestPOSTag(unittest.TestCase):
+
+    def test_single_word(self):
+        text = "పుస్తకం"
+        expected = [("పుస్తకం", "NOUN")]
+        self.assertEqual(pos_tag(text), expected)
+
+    def test_simple_sentence(self):
+        text = "నేను పుస్తకం చదువుతున్నాను."
+        expected = [
+            ("నేను", "X"),
+            ("పుస్తకం", "NOUN"),
+            ("చదువుతున్నాను", "VERB"),
+            (".", "PUNCT")
+        ]
+        self.assertEqual(pos_tag(text), expected)
 
 if __name__ == "__main__":
     unittest.main()
