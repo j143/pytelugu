@@ -150,7 +150,7 @@ def stem_word(word: str) -> str:
     Returns:
         str: The stemmed word.
     """
-    suffixes = ['లు']
+    suffixes = ['లు', 'ము', 'తో', 'కు', 'ని', 'లో', 'గా', 'లు', 'కి', 'న్న']  # Added 3 more common Telugu suffixes
     for suffix in suffixes:
         if word.endswith(suffix):
             return word[:-len(suffix)] # remove matched suffix and return remaining word

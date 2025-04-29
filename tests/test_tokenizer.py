@@ -84,5 +84,11 @@ class TestStemmingAndLemmatization(unittest.TestCase):
     def test_stem_word(self):
         self.assertEqual(stem_word("పుస్తకాలు"), "పుస్తకా")
 
+    def test_stem_word_with_new_suffixes(self):
+        self.assertEqual(stem_word("పుస్తకాలు"), "పుస్తకా")
+        self.assertEqual(stem_word("పిల్లలు"), "పిల్ల")
+        self.assertEqual(stem_word("చదువుతున్న"), "చదువుతు")
+        self.assertEqual(stem_word("వెళ్తున్న"), "వెళ్తు")
+
 if __name__ == "__main__":
     unittest.main()
