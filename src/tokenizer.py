@@ -1,4 +1,5 @@
 import re
+import csv
 from typing import List, Tuple
 
 def normalize_text(text: str) -> str:
@@ -84,30 +85,55 @@ def pos_tag(text: str) -> List[Tuple[str, str]]:
 
     return tagged_words
 
-def named_entity_recognition(text: str) -> List[Tuple[str, str]]:
+def load_ner_patterns(file_path: str) -> dict:
     """
-    Named Entity Recognition (NER) over Telugu text
+    Use NER patterns we added in ner_patterns.txt file
 
     Args:
-        text (str): Telugu text
+        file_path (str): Path to the NER patterns file.
 
     Returns:
-        List[Tuple[str, str]]: Each word and its type
+        dict: A dictionary with keys as entity types and values as lists of words.
     """
-    # First identify the words themselves as a starting point
-    patterns = {
-        'PERSON': r'(రాముడు|సీత|హనుమంతుడు)',  # Simplified regex to match names directly
-    }
+    patterns = {}
+    with open(file_path, 'r', encoding='utf-8') as file:
+        reader = csv.reader(file)
+        next(reader)  # First line is a header
+        for row in reader:
+            entity_type, word = row
+            if entity_type not in patterns:
+                patterns[entity_type] = []
+            patterns[entity_type].append(word)
 
-    # tokenize text into words
+    # Create a pattern dictionary
+    for entity_type in patterns:
+        patterns[entity_type] = '|'.join(patterns[entity_type])
+
+    return patterns
+
+def named_entity_recognition(text: str, patterns_file: str = "ner_patterns.txt") -> List[Tuple[str, str]]:
+    """
+    Named Entity Recognition (NER) over Telugu text.
+
+    Args:
+        text (str): Telugu text.
+        patterns_file (str): Path to the NER patterns file.
+
+    Returns:
+        List[Tuple[str, str]]: Each word and its type.
+    """
+    # Load patterns from the file
+    patterns = load_ner_patterns(patterns_file)
+
+    # Tokenize text into words
     words = word_tokenize(text)
     print("Debug: Tokenized words:", words)
 
-    # loop over all the words and identify the type
+    # Loop over all the words and identify the type
     entities = []
     for word in words:
         for entity_type, pattern in patterns.items():
-            if re.fullmatch(pattern, word):  # Use re.fullmatch to match the entire word
+            if re.fullmatch(pattern, word):
                 print(f"Debug: Matched {word} as {entity_type}")
                 entities.append((word, entity_type))
                 break
